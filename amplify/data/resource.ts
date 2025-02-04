@@ -15,8 +15,9 @@ const schema = a.schema({
   Node: a
     .model({
       name: a.string(),
-      parentId: a.id().required(), // ID du parent (optionnel)
-      // parent: a.belongsTo("Node", "parentId"), // Relation vers le parent
+      parentId: a.id(), // Champ de référence vers le parent
+      parent: a.belongsTo("Node", "parentId"), // Relation vers le parent
+      children: a.hasMany("Node", "parentId"), // Relation vers les enfants
     })
     .authorization((allow) => [allow.publicApiKey()]),
 });

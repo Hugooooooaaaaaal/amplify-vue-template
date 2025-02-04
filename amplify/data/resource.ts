@@ -12,6 +12,13 @@ const schema = a.schema({
       content: a.string(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
+  Node: a
+    .model({
+      name: a.string(),
+      parentId: a.id().optional(), // ID du parent (optionnel)
+      parent: a.belongsTo("Node", "parentId"), // Relation vers le parent
+    })
+    .authorization((allow) => [allow.publicApiKey()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;

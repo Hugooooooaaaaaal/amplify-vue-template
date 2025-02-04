@@ -14,7 +14,7 @@ const schema = a.schema({
     .authorization((allow) => [allow.publicApiKey()]),
   Node: a
     .model({
-      name: a.string().required,
+      name: a.string(),
       parentId: a.id(), // ID du parent (optionnel)
       parent: a.belongsTo("Node", "parentId"), // Relation vers le parent
     })
